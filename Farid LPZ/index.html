@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inversiones FL</title>
+<link rel="icon" type="image/png" href="Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0B; --surface:#141416; --surface-2:#1D1D20;
+    --gold:#E3B341; --gold-light:#F3D27A;
+    --red:#DC2F3D; --red-dark:#B8232F;
+    --cream:#F5F1E6; --cream-dim:#B9B6AC;
+    --border:rgba(245,241,230,0.09);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;}
+  html{scroll-padding-top:76px; scroll-behavior:smooth;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--cream);
+    font-family:'Inter',-apple-system,sans-serif; font-size:15px; line-height:1.55;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .display{font-family:'Archivo Black',sans-serif;}
+  .jakarta{font-family:'Plus Jakarta Sans',sans-serif;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ===== Header ===== */
+  header.site{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+    background:rgba(10,10,11,0.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1180px;margin:0 auto;gap:20px;}
+  .logo-img{height:42px; width:auto;}
+  nav.main-nav{display:flex;gap:30px;}
+  nav.main-nav a{font-size:13.5px;font-weight:600;color:var(--cream-dim);text-decoration:none;}
+  nav.main-nav a:hover{color:var(--gold-light);}
+  .btn-tg-mini{
+    display:flex;align-items:center;gap:7px;
+    padding:10px 18px;border-radius:8px;border:1px solid var(--red);
+    background:var(--red);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(120% 100% at 75% 20%, rgba(227,179,65,0.10) 0%, transparent 45%), var(--bg);
+    padding:60px 0 0;
+  }
+  .hero-inner{display:grid; grid-template-columns:1.05fr 0.95fr; gap:10px; align-items:end;}
+  .hero-copy{padding-bottom:64px;}
+  .eyebrow-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(227,179,65,0.1); border:1px solid rgba(227,179,65,0.35); color:var(--gold-light);
+    padding:7px 14px; border-radius:999px; font-size:12.5px; font-weight:700; margin-bottom:24px;
+  }
+  .eyebrow-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+  h1.hero-h{
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800;
+    font-size:clamp(32px,4.4vw,52px); line-height:1.05; letter-spacing:-1px; margin:0 0 20px;
+  }
+  h1.hero-h span{color:var(--gold);}
+  .hero-desc{color:var(--cream-dim); font-size:16px; max-width:44ch; line-height:1.65; margin:0 0 32px;}
+  .hero-btns{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--red); color:#fff; border:none; padding:16px 30px;
+    border-radius:9px; font-weight:700; font-size:15px; text-decoration:none; display:inline-block;
+    box-shadow:0 14px 26px -10px rgba(220,47,61,0.55);
+  }
+  .btn-ghost{
+    border:1.5px solid rgba(245,241,230,0.22); color:var(--cream); padding:15px 26px;
+    border-radius:9px; font-weight:600; font-size:15px; text-decoration:none; display:inline-block;
+  }
+  .hero-media{position:relative;}
+  .hero-media img{
+    border-radius:20px 20px 0 0;
+    box-shadow:0 -30px 70px -20px rgba(227,179,65,0.18);
+  }
+
+  /* ===== Prizes ===== */
+  section.prizes{padding:78px 0 40px;}
+  .section-head{max-width:60ch; margin-bottom:42px;}
+  .section-head .eyebrow{font-size:12.5px; font-weight:700; color:var(--gold); margin:0 0 10px; letter-spacing:0.2px;}
+  .section-head h2{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(24px,3vw,32px); margin:0 0 12px; letter-spacing:-0.5px;}
+  .section-head p{color:var(--cream-dim); font-size:15px; margin:0; line-height:1.65;}
+
+  .prize-tabs{display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap;}
+  .prize-tab{
+    padding:10px 18px; border-radius:8px; border:1px solid var(--border); background:var(--surface);
+    font-weight:600; font-size:13.5px; color:var(--cream-dim);
+  }
+  .prize-tab.active{background:var(--gold); color:#1A1200; border-color:var(--gold);}
+
+  .prize-panels{position:relative;}
+  .prize-panel{display:none;}
+  .prize-panel.active{display:block;}
+  .prize-panel-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:18px;
+    padding:28px; overflow:hidden;
+  }
+  .prize-panel-card img{border-radius:10px; width:100%; background:#fff;}
+
+  /* ===== Packages ===== */
+  section.packages{padding:20px 0 90px;}
+  .pkg-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .pkg-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    padding:22px 20px; text-align:left; position:relative;
+  }
+  .pkg-card .pkg-n{font-size:12.5px; font-weight:600; color:var(--cream-dim); margin-bottom:6px;}
+  .pkg-card .pkg-price{font-family:'Plus Jakarta Sans',sans-serif; font-size:23px; font-weight:800; color:var(--gold-light); margin-bottom:16px;}
+  .pkg-card a{
+    display:block; text-align:center; text-decoration:none;
+    background:var(--surface-2); color:var(--cream); font-weight:700; font-size:13.5px;
+    padding:11px 0; border-radius:8px; border:1px solid var(--border);
+  }
+  .pkg-card.popular{border-color:var(--red); border-width:1.5px;}
+  .pkg-card.popular::before{
+    content:"Más pedido"; position:absolute; top:-11px; left:18px;
+    background:var(--red); color:#fff; font-size:10.5px; font-weight:700;
+    padding:4px 10px; border-radius:999px;
+  }
+  .pkg-card.popular a{background:var(--red); color:#fff; border-color:var(--red-dark);}
+  .pkg-more{
+    text-align:center; margin-top:22px; font-size:13.5px; color:var(--cream-dim);
+  }
+  .pkg-more a{color:var(--gold-light); font-weight:700; text-decoration:none;}
+
+  .custom-qty{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:26px 28px; margin-top:16px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  }
+  .custom-qty .cq-label{font-size:14px; font-weight:700; color:var(--cream);}
+  .custom-qty .cq-sub{font-size:12.5px; color:var(--cream-dim); margin-top:4px;}
+  .cq-controls{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .cq-stepper{display:flex; align-items:center; border:1px solid var(--border); border-radius:9px; overflow:hidden;}
+  .cq-stepper button{
+    background:var(--surface-2); color:var(--cream); border:none; width:38px; height:42px;
+    font-size:17px; font-weight:700;
+  }
+  .cq-stepper input{
+    width:74px; text-align:center; border:none; background:var(--bg); color:var(--cream);
+    font-size:15px; font-weight:700; height:42px; font-family:'Inter',sans-serif;
+    -moz-appearance:textfield;
+  }
+  .cq-stepper input::-webkit-outer-spin-button,
+  .cq-stepper input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .cq-price{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:19px; color:var(--gold-light); min-width:110px;}
+  .cq-price .cq-price-note{display:block; font-family:'Inter',sans-serif; font-weight:500; font-size:11.5px; color:var(--cream-dim); margin-top:2px;}
+  .cq-buy{
+    background:var(--red); color:#fff; border:none; padding:13px 26px;
+    border-radius:9px; font-weight:700; font-size:14px; text-decoration:none; display:inline-block;
+  }
+
+  /* ===== Trust ===== */
+  section.trust{background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:80px 0;}
+  .trust-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .trust-card{background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:26px;}
+  .trust-icon{width:42px;height:42px;border-radius:10px;background:rgba(227,179,65,0.1);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;}
+  .trust-card h3{font-size:15.5px;margin:0 0 8px;font-weight:700; font-family:'Plus Jakarta Sans',sans-serif;}
+  .trust-card p{font-size:13.5px;color:var(--cream-dim);margin:0;line-height:1.65;}
+
+  /* ===== Search ===== */
+  section.search{padding:80px 0;}
+  .search-panel{
+    background:var(--surface); border:1px solid var(--border); border-radius:18px;
+    padding:42px; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:center;
+  }
+  .search-panel h2{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:24px; margin:0 0 10px;}
+  .search-panel p{color:var(--cream-dim); font-size:14px; margin:0; line-height:1.65;}
+  .search-form label{display:block; font-size:12.5px; font-weight:700; margin-bottom:8px; color:var(--cream-dim);}
+  .search-form input{
+    width:100%; padding:13px 14px; border-radius:9px; border:1px solid var(--border); background:var(--surface-2);
+    color:var(--cream); font-size:14.5px; margin-bottom:14px; font-family:'Inter',sans-serif;
+  }
+  .search-form input::placeholder{color:var(--cream-dim);}
+  .search-form button{
+    width:100%; padding:13px 0; border-radius:9px; border:none;
+    background:var(--gold); color:#1A1200; font-weight:800; font-size:14.5px;
+  }
+
+  /* ===== Footer ===== */
+  footer.site{background:var(--surface); padding:56px 0 32px; border-top:1px solid var(--border);}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px;}
+  .foot-brand{display:flex; align-items:center; gap:10px;}
+  .foot-brand img{height:38px;}
+  .foot-note{font-size:13px; color:var(--cream-dim); margin-top:12px; max-width:36ch; line-height:1.65;}
+  .foot-tg{
+    background:var(--red); border:1px solid var(--red-dark);
+    padding:12px 22px; border-radius:9px; color:#fff; text-decoration:none;
+    font-weight:700; font-size:13.5px;
+  }
+  .foot-legal{margin-top:40px; font-size:12px; color:var(--cream-dim); opacity:0.5; border-top:1px solid var(--border); padding-top:22px;}
+
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0A0A0B; } }
+
+  @media (max-width: 900px){
+    nav.main-nav{display:none;}
+    .hero-inner{grid-template-columns:1fr; align-items:stretch;}
+    .hero-copy{padding-bottom:34px;}
+    .hero-media{order:-1; margin:0 -24px;}
+    .hero-media img{border-radius:0;}
+    .pkg-grid{grid-template-columns:repeat(2,1fr);}
+    .trust-grid{grid-template-columns:1fr;}
+    .search-panel{grid-template-columns:1fr; padding:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <a href="#"><img class="logo-img" src="Logo.png"></a>
+    <nav class="main-nav">
+      <a href="#premios">Premios</a>
+      <a href="#numeros">Números</a>
+      <a href="#buscar">Buscar números</a>
+    </nav>
+    <a class="btn-tg-mini" href="https://t.me/atencionclientefl">Telegram</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow-pill"><span class="dot"></span>Combo Millonario — sorteo activo</div>
+      <h1 class="hero-h">Caballo, moto y <span>un millón de pesos</span> te están esperando en un número.</h1>
+      <p class="hero-desc">Compra tus números del Combo Millonario de Inversiones FL. Entre más números tengas, más chances tienes en las tres categorías de premio.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#numeros">Comprar números</a>
+        <a class="btn-ghost" href="#buscar">Buscar mis números</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="combo.png">
+    </div>
+  </div>
+</section>
+
+<section class="prizes" id="premios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Números ganadores</p>
+      <h2>64 números ya están premiados</h2>
+      <p>Revisa las tres categorías del Combo Millonario — si tu número aparece en alguna de estas listas, ganaste.</p>
+    </div>
+    <div class="prize-tabs">
+      <button class="prize-tab active" data-tab="millon">1 Millón · 50 números</button>
+      <button class="prize-tab" data-tab="moto">Moto · 10 números</button>
+      <button class="prize-tab" data-tab="caballo">Caballo · 4 números</button>
+    </div>
+    <div class="prize-panels">
+      <div class="prize-panel active" id="panel-millon">
+        <div class="prize-panel-card"><img src="50M.png">
+      </div>
+      <div class="prize-panel" id="panel-moto">
+        <div class="prize-panel-card"><img src="10 Motos.png">
+      </div>
+      <div class="prize-panel" id="panel-caballo">
+        <div class="prize-panel-card"><img src="4 Caballos.png">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="packages" id="numeros">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Adquiérelos</p>
+      <h2>Elige tu paquete de números</h2>
+      <p>Cada número participa en las tres categorías de premio del Combo Millonario.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card"><div class="pkg-n">16 números</div><div class="pkg-price">$20.800</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=16">Comprar</a></div>
+      <div class="pkg-card popular"><div class="pkg-n">28 números</div><div class="pkg-price">$36.400</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=28">Comprar</a></div>
+      <div class="pkg-card"><div class="pkg-n">50 números</div><div class="pkg-price">$65.000</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=50">Comprar</a></div>
+      <div class="pkg-card"><div class="pkg-n">100 números</div><div class="pkg-price">$130.000</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=100">Comprar</a></div>
+      <div class="pkg-card"><div class="pkg-n">21 números</div><div class="pkg-price">$27.300</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=21">Comprar</a></div>
+      <div class="pkg-card"><div class="pkg-n">200 números</div><div class="pkg-price">$260.000</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=200">Comprar</a></div>
+      <div class="pkg-card"><div class="pkg-n">400 números</div><div class="pkg-price">$520.000</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=400">Comprar</a></div>
+      <div class="pkg-card"><div class="pkg-n">600 números</div><div class="pkg-price">$780.000</div><a href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=600">Comprar</a></div>
+    </div>
+    <div class="custom-qty">
+      <div>
+        <div class="cq-label">¿Quieres otra cantidad? Escríbela tú mismo</div>
+        <div class="cq-sub">Mínimo 16 números · $1.300 por número</div>
+      </div>
+      <div class="cq-controls">
+        <div class="cq-stepper">
+          <button type="button" id="cq-minus">–</button>
+          <input type="number" id="cq-input" value="16" min="16" step="1">
+          <button type="button" id="cq-plus">+</button>
+        </div>
+        <div class="cq-price" id="cq-price">$20.800<span class="cq-price-note">total</span></div>
+        <a class="cq-buy" id="cq-buy-link" href="https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=16" target="_blank" rel="noopener">Comprar</a>
+      </div>
+    </div>
+    <p class="pkg-more">¿Quieres más números? <a href="https://t.me/atencionclientefl">Escríbenos por Telegram</a></p>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2>Comprar y verificar tus números es simple</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon">🎟️</div>
+        <h3>1. Elige tu paquete</h3>
+        <p>Escoge cuántos números quieres según el presupuesto que tengas para el Combo Millonario.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">✉️</div>
+        <h3>2. Compra con tu correo</h3>
+        <p>Tus números quedan asociados al correo con el que hiciste la compra.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">🔎</div>
+        <h3>3. Consulta cuando quieras</h3>
+        <p>Busca tus números con tu correo y revisa si aparecen en alguna de las listas de premiados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="search" id="buscar">
+  <div class="wrap">
+    <div class="search-panel">
+      <div>
+        <h2>Busca tus números</h2>
+        <p>Ingresa el correo con el que compraste para ver tus números y revisar si están entre los premiados del Combo Millonario.</p>
+      </div>
+      <div class="search-form">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tucorreo@ejemplo.com">
+        <button type="button">Buscar mis números</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand"><img src="Logo.png">
+      <div class="foot-note">Combo Millonario de Inversiones FL. Escríbenos por Telegram para dudas sobre tu compra o el sorteo.</div>
+    </div>
+    <a class="foot-tg" href="https://t.me/atencionclientefl">Atención al cliente — Telegram ↗</a>
+  </div>
+  <div class="wrap foot-legal">Diseño de propuesta — contenidos y premios según información publicada por Inversiones FL.</div>
+</footer>
+
+<script>
+(function(){
+  var PRICE = 1300;
+  var MIN = 16;
+  var input = document.getElementById('cq-input');
+  var priceEl = document.getElementById('cq-price');
+  var buyLink = document.getElementById('cq-buy-link');
+  var minus = document.getElementById('cq-minus');
+  var plus = document.getElementById('cq-plus');
+
+  function clamp(n){
+    n = parseInt(n, 10);
+    if(isNaN(n) || n < MIN) n = MIN;
+    return n;
+  }
+
+  function update(){
+    var qty = clamp(input.value);
+    input.value = qty;
+    var total = qty * PRICE;
+    priceEl.innerHTML = '$' + total.toLocaleString('es-CO') + '<span class="cq-price-note">total</span>';
+    buyLink.href = 'https://faridlopez.co/finalizar-compra/?add-to-cart=430&quantity=' + qty;
+  }
+
+  minus.addEventListener('click', function(){ input.value = clamp(input.value) - 1; update(); });
+  plus.addEventListener('click', function(){ input.value = clamp(input.value) + 1; update(); });
+  input.addEventListener('input', update);
+  input.addEventListener('blur', update);
+
+  update();
+})();
+
+document.querySelectorAll('.prize-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.prize-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.prize-panel').forEach(function(p){ p.classList.remove('active'); });
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.getAttribute('data-tab')).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
